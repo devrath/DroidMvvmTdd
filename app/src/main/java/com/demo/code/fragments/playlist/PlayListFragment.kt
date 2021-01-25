@@ -24,6 +24,7 @@ class PlayListFragment : Fragment() {
 
     lateinit var playlistViewModel : PlaylistViewModel
     lateinit var playlistViewModelFactory : PlaylistViewModelFactory
+    lateinit var repository : PlaylistRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +37,7 @@ class PlayListFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        playlistViewModelFactory = PlaylistViewModelFactory()
+        playlistViewModelFactory = PlaylistViewModelFactory(repository)
         playlistViewModel = ViewModelProvider(this,playlistViewModelFactory).get(PlaylistViewModel::class.java)
     }
 

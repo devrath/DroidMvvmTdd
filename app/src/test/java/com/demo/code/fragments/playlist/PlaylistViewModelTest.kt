@@ -23,9 +23,13 @@ class PlaylistViewModelTest {
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     // We create the object of view model
-    var playlistViewModel : PlaylistViewModel = PlaylistViewModel()
+    var playlistViewModel : PlaylistViewModel
     // We mock the repository
     var playlistRepository : PlaylistRepository = mock()
+
+    init {
+        playlistViewModel = PlaylistViewModel(playlistRepository)
+    }
 
     @Test
     fun getPlaylistFromRepository(){

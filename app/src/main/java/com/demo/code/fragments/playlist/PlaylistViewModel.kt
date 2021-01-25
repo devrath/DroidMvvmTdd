@@ -4,10 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.demo.code.models.PlaylistItem
 
-class PlaylistViewModel : ViewModel(){
+class PlaylistViewModel(
+        private val repository : PlaylistRepository
+) : ViewModel(){
 
     private val playList = MutableLiveData<List<PlaylistItem>>()
 
+
+    init {
+        repository.getPlaylists()
+    }
 
     fun setUpListData() {
 
