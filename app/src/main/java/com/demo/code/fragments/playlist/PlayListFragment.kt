@@ -42,12 +42,12 @@ class PlayListFragment : Fragment() {
     }
 
     private fun observers() {
-        playlistViewModel.setUpListData()
-        playlistViewModel.getPlayList().observe(this as LifecycleOwner) { playList ->
+        //playlistViewModel.setUpListData()
+        playlistViewModel.playList.observe(this as LifecycleOwner) { playList ->
             // Update the UI
             if(playList != null){
                 // Show the list
-                setAdapter(playList)
+                //setAdapter(playList)
             } else {
                 // Show the error message
                 Toast.makeText(activity,"Empty data",Toast.LENGTH_LONG).show()
