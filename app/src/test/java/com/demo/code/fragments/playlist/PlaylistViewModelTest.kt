@@ -16,24 +16,51 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.notification.Failure
 import org.mockito.Mockito.times
+import java.lang.RuntimeException
 
 
 class PlaylistViewModelTest : BaseUnitTest() {
 
-    // We create the object of view model
-    private lateinit var playlistViewModel : PlaylistViewModel
     // We mock the repository
     private var playlistRepository : PlaylistRepository = mock()
     // We mock the list of play list
     private val playList = mock<List<PlaylistItem>>()
     // Successful playlist
     private val expected = Result.success(playList)
+    // Exception
+    private val expectedExpection = RuntimeException("Something went wrong")
+
+    @Test
+    fun emitsPlaylistFromRepository() = runBlockingTest {
+        val viewModel = mockSuccessfulCase()
+        assertEquals(expected,viewModel.playList.getValueForTest())
+    }
+
+    @Test
+    fun emitsErrorFromRepository() = runBlockingTest {
+        val viewModel = mockUnSuccessfulCase()
+        viewModel.playList.getValueForTest().let {
+            if (it != null) {
+                assertEquals(expectedExpection, it.exceptionOrNull())
+            }
+        }
+    }
+
+    @Test
+    fun getPlaylistFromRepository() = runBlockingTest {
+        val viewModel = mockSuccessfulCase()
+
+        // Extension function for the live data
+        viewModel.playList.getValueForTest()
+
+        // Call the method of the repository one time
+        verify(playlistRepository, times(1)).getPlaylists()
+    }
 
 
-
-    @Before
-    fun setUp() {
+    private fun mockSuccessfulCase(): PlaylistViewModel {
         runBlocking {
             whenever(playlistRepository.getPlaylists()).thenReturn(
                     flow {
@@ -41,24 +68,20 @@ class PlaylistViewModelTest : BaseUnitTest() {
                     }
             )
         }
-        playlistViewModel = PlaylistViewModel(playlistRepository)
+        return PlaylistViewModel(playlistRepository)
+    }
+
+    private fun mockUnSuccessfulCase(): PlaylistViewModel {
+        runBlocking {
+            whenever(playlistRepository.getPlaylists()).thenReturn(
+                    flow {
+                        emit(Result.failure<List<PlaylistItem>>(expectedExpection))
+                    }
+            )
+        }
+        return PlaylistViewModel(playlistRepository)
     }
 
 
-    @Test
-    fun getPlaylistFromRepository() = runBlockingTest {
-        // Call the method of the repository one time
-        verify(playlistRepository, times(1)).getPlaylists()
-
-        // Extension function for the live data
-        playlistViewModel.getPlayList().getValueForTest()
-
-    }
-
-    @Test
-    fun emitsPlaylistFromRepository() = runBlockingTest {
-
-        assertEquals(expected,playlistViewModel.getPlayList().getValueForTest())
-    }
 
 }
