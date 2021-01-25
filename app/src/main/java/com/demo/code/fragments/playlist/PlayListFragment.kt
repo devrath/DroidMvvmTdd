@@ -1,16 +1,16 @@
-package com.demo.code.fragments
+package com.demo.code.fragments.playlist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import com.demo.code.adapters.MyPlaylistRecyclerViewAdapter
 import com.demo.code.R
-import com.demo.code.models.PlaylistDataItem
+import com.demo.code.models.PlaylistItem
 import kotlinx.android.synthetic.main.fragment_playlist.*
 
 /**
@@ -19,6 +19,9 @@ import kotlinx.android.synthetic.main.fragment_playlist.*
 class PlayListFragment : Fragment() {
 
     private var columnCount = 1
+
+    lateinit var playlistViewModel : PlaylistViewModel
+    lateinit var playlistViewModelFactory : PlaylistViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,14 @@ class PlayListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setAdapter()
+        observers()
+    }
+
+    private fun observers() {
+        playlistViewModel.getPlayList().observe(this as LifecycleOwner, { playlist ->
+            // Update the UI
+
+        })
     }
 
     private fun inflateScreen(inflater: LayoutInflater, container: ViewGroup?): View {
@@ -47,13 +58,13 @@ class PlayListFragment : Fragment() {
         playlist_list.adapter = MyPlaylistRecyclerViewAdapter(setUpListData())
     }
 
-    private fun setUpListData(): ArrayList<PlaylistDataItem> {
+    private fun setUpListData(): ArrayList<PlaylistItem> {
 
-        val data1 = PlaylistDataItem("Category1","Id1","Name1")
-        val data2 = PlaylistDataItem("Category2","Id2","Name2")
-        val data3 = PlaylistDataItem("Category3","Id3","Name3")
+        val data1 = PlaylistItem("Category1","Id1","Name1")
+        val data2 = PlaylistItem("Category2","Id2","Name2")
+        val data3 = PlaylistItem("Category3","Id3","Name3")
 
-        val listData = ArrayList<PlaylistDataItem>()
+        val listData = ArrayList<PlaylistItem>()
         listData.add(data1)
         listData.add(data2)
         listData.add(data3)

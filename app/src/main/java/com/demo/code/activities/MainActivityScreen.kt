@@ -2,7 +2,7 @@ package com.demo.code.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.demo.code.fragments.PlayListFragment
+import com.demo.code.fragments.playlist.PlayListFragment
 import com.demo.code.R
 
 class MainActivityScreen : AppCompatActivity() {

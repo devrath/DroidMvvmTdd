@@ -4,14 +4,12 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.demo.code.R
-import com.demo.code.databinding.PlaylistItemBinding
-import com.demo.code.models.PlaylistDataItem
+import com.demo.code.models.PlaylistItem
 import kotlinx.android.synthetic.main.playlist_item.view.*
 
 class MyPlaylistRecyclerViewAdapter(
-    private val values: ArrayList<PlaylistDataItem>
+    private val values: ArrayList<PlaylistItem>
 ) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun getItemCount(): Int {

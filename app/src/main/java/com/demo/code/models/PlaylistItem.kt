@@ -3,7 +3,7 @@ package com.demo.code.models
 
 import com.google.gson.annotations.SerializedName
 
-data class PlaylistDataItem(
+data class PlaylistItem(
     @SerializedName("category")
     val category: String,
     @SerializedName("id")
