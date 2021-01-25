@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -41,9 +42,15 @@ class PlayListFragment : Fragment() {
 
     private fun observers() {
         playlistViewModel.setUpListData()
-        playlistViewModel.getPlayList().observe(this as LifecycleOwner) {
+        playlistViewModel.getPlayList().observe(this as LifecycleOwner) { playList ->
             // Update the UI
-            setAdapter(it)
+            if(playList != null){
+                // Show the list
+                setAdapter(playList)
+            } else {
+                // Show the error message
+                Toast.makeText(activity,"Empty data",Toast.LENGTH_LONG).show()
+            }
         }
     }
 
