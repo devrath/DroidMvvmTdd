@@ -29,13 +29,13 @@ class PlaylistFeature {
     @Test
     fun displaysListOfPlaylist(){
         // Check if the recycler view has 10 items
-        assertRecyclerViewItemCount(R.id.playlist_list,10)
+        assertRecyclerViewItemCount(R.id.playlist_list,3)
         //Check the name of the row in the list
-        onView(allOf(withId(R.id.playlist_name),isDescendantOfA(nthChildOf(R.id.playlist_list,0))))
+        onView(allOf(withId(R.id.playlist_name),isDescendantOfA(nthChildOf(withId(R.id.playlist_list),0))))
             .check(matches(withText("Hard Rock Cafe")))
             .check(matches(isDisplayed()))
         //Check the category of the row in the list
-        onView(allOf(withId(R.id.playlist_category),isDescendantOfA(nthChildOf(R.id.playlist_list,0))))
+        onView(allOf(withId(R.id.playlist_category),isDescendantOfA(nthChildOf(withId(R.id.playlist_list),0))))
             .check(matches(withText("rock")))
             .check(matches(isDisplayed()))
     }

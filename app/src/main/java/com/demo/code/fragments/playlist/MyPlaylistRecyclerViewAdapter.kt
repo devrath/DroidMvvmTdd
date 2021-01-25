@@ -21,8 +21,8 @@ class MyPlaylistRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.playlist_name?.text = values.get(position).name
-        holder.playlist_category?.text = values.get(position).category
+        holder.playlist_name?.text = values[position].name
+        holder.playlist_category?.text = values[position].category
     }
 }
 

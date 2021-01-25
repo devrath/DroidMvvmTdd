@@ -11,9 +11,9 @@ class PlaylistViewModel : ViewModel(){
 
     fun setUpListData() {
 
-        val data1 = PlaylistItem("Category1","Id1","Name1")
-        val data2 = PlaylistItem("Category2","Id2","Name2")
-        val data3 = PlaylistItem("Category3","Id3","Name3")
+        val data1 = PlaylistItem("rock","1","Hard Rock Cafe")
+        val data2 = PlaylistItem("house","2","Chilled House")
+        val data3 = PlaylistItem("mixed","3","US TOP 40 HITS")
 
         val listData = ArrayList<PlaylistItem>()
         listData.add(data1)
