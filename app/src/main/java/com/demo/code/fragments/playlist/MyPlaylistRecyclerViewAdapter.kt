@@ -9,7 +9,7 @@ import com.demo.code.models.PlaylistItem
 import kotlinx.android.synthetic.main.playlist_item.view.*
 
 class MyPlaylistRecyclerViewAdapter(
-    private val values: ArrayList<PlaylistItem>
+    private val values: List<PlaylistItem>
 ) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun getItemCount(): Int {
