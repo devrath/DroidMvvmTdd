@@ -8,15 +8,19 @@ import com.nhaarman.mockitokotlin2.whenever
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.times
+import java.lang.RuntimeException
 
 class PlaylistRepositoryTest : BaseUnitTest() {
 
     private val service : PlayListService = mock()
     private val playlists = mock<List<PlaylistItem>>()
+    // Exception
+    private val expectedExpection = RuntimeException("Something went wrong")
 
     @Test
     fun getPlaylistFromService() = runBlockingTest{
@@ -32,16 +36,39 @@ class PlaylistRepositoryTest : BaseUnitTest() {
      *  that receives from the service **/
     @Test
     fun emitPlaylistFromService() = runBlockingTest {
-
-        whenever(service.fetchPlayList()).thenReturn(
-                flow {
-                    emit(Result.success(playlists))
-                }
-        )
-
-        val repository = PlaylistRepository(service)
+        val repository = mockSuccessfulCase()
         assertEquals(playlists,repository.getPlaylists().first().getOrNull())
+    }
 
+    @Test
+    fun emitErrorFromService() = runBlockingTest {
+        val service = mockUnSuccessfulCase()
+        assertEquals(expectedExpection,service.getPlaylists().first().exceptionOrNull())
+    }
+
+
+
+
+    private fun mockSuccessfulCase(): PlaylistRepository {
+        runBlocking {
+            whenever(service.fetchPlayList()).thenReturn(
+                    flow {
+                        emit(Result.success(playlists))
+                    }
+            )
+        }
+        return PlaylistRepository(service)
+    }
+
+    private fun mockUnSuccessfulCase(): PlaylistRepository {
+        runBlocking {
+            whenever(service.fetchPlayList()).thenReturn(
+                    flow {
+                        emit(Result.failure(expectedExpection))
+                    }
+            )
+        }
+        return PlaylistRepository(service)
     }
 
 }
