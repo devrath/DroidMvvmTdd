@@ -24,7 +24,7 @@ class PlayListFragment : Fragment() {
 
     lateinit var playlistViewModel : PlaylistViewModel
 
-    private var servicePlaylist = PlayListService()
+    private var servicePlaylist = PlayListService(object  : PlaylistAPI{})
     private var repository = PlaylistRepository(service = servicePlaylist)
     private var playlistViewModelFactory = PlaylistViewModelFactory(repository)
 

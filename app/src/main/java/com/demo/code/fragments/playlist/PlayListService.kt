@@ -4,10 +4,17 @@ import com.demo.code.models.PlaylistItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class PlayListService {
+class PlayListService(
+        private val api : PlaylistAPI
+) {
 
     suspend fun fetchPlayList() : Flow<Result<List<PlaylistItem>>> {
-        TODO("Not yet implemented")
+
+        api.fetchPlayList()
+
+        return flow {
+
+        }
     }
 
 }
