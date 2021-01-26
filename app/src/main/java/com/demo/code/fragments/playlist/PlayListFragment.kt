@@ -23,8 +23,10 @@ class PlayListFragment : Fragment() {
     private var columnCount = 1
 
     lateinit var playlistViewModel : PlaylistViewModel
-    lateinit var playlistViewModelFactory : PlaylistViewModelFactory
-    lateinit var repository : PlaylistRepository
+
+    private var servicePlaylist = PlayListService()
+    private var repository = PlaylistRepository(service = servicePlaylist)
+    private var playlistViewModelFactory = PlaylistViewModelFactory(repository)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +39,6 @@ class PlayListFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        playlistViewModelFactory = PlaylistViewModelFactory(repository)
         playlistViewModel = ViewModelProvider(this,playlistViewModelFactory).get(PlaylistViewModel::class.java)
     }
 
