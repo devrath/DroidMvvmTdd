@@ -14,6 +14,9 @@ import com.demo.code.adapters.MyPlaylistRecyclerViewAdapter
 import com.demo.code.R
 import com.demo.code.models.PlaylistItem
 import kotlinx.android.synthetic.main.fragment_playlist.*
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * A fragment representing a list of Items.
@@ -24,7 +27,17 @@ class PlayListFragment : Fragment() {
 
     lateinit var playlistViewModel : PlaylistViewModel
 
-    private var servicePlaylist = PlayListService(object  : PlaylistAPI{})
+
+
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("http://192.168.1.3:2999/") // Sometimes it fails and we need to change this
+        .client(OkHttpClient())
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val api = retrofit.create(PlaylistAPI::class.java)
+    private var servicePlaylist = PlayListService(api)
     private var repository = PlaylistRepository(service = servicePlaylist)
     private var playlistViewModelFactory = PlaylistViewModelFactory(repository)
 
@@ -48,7 +61,9 @@ class PlayListFragment : Fragment() {
             // Update the UI
             if(playList != null){
                 // Show the list
-                //setAdapter(playList)
+                playList.getOrNull()?.let {
+                    setAdapter(it)
+                }
             } else {
                 // Show the error message
                 Toast.makeText(activity,"Empty data",Toast.LENGTH_LONG).show()

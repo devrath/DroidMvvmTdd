@@ -1,11 +1,11 @@
 package com.demo.code.fragments.playlist
 
 import com.demo.code.models.PlaylistItem
+import retrofit2.http.GET
 
 interface PlaylistAPI {
 
-    suspend fun fetchPlayList() : List<PlaylistItem> {
-        TODO("Not yet implemented")
-    }
+    @GET("playlists")
+    suspend fun fetchPlayList() : List<PlaylistItem>
 
 }
