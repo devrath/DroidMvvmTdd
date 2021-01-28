@@ -9,6 +9,8 @@ class PlaylistViewModel(
         private val repository : PlaylistRepository
 ) : ViewModel(){
 
+    val progressBarVisibility = MutableLiveData<Boolean>()
+
     val playList = liveData<Result<List<PlaylistItem>>>{
         emitSource(repository.getPlaylists().asLiveData())
     }
