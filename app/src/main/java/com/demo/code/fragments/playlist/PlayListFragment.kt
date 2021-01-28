@@ -1,25 +1,20 @@
 package com.demo.code.fragments.playlist
 
-import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.RecyclerView
 import com.demo.code.adapters.MyPlaylistRecyclerViewAdapter
-import com.demo.code.R
 import com.demo.code.databinding.FragmentPlaylistBinding
 import com.demo.code.models.PlaylistItem
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_playlist.*
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -40,8 +35,12 @@ class PlayListFragment : Fragment() {
     ): View? {
         val view = inflateScreen(inflater,container)
         initViewModel()
-        observers()
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observers()
     }
 
     override fun onDestroyView() {
@@ -57,10 +56,8 @@ class PlayListFragment : Fragment() {
         //playlistViewModel.setUpListData()
         playlistViewModel.playList.observe(this as LifecycleOwner) { playList ->
             // Update the UI
-            showProgress()
             playList.getOrNull()?.let {
-                setAdapter(it)
-                hideProgress()
+                setupList(binding.playlistList,it)
             }
         }
 
@@ -70,6 +67,13 @@ class PlayListFragment : Fragment() {
             }else{
                 hideProgress()
             }
+        }
+    }
+
+    private fun setupList(view: View?, playList: List<PlaylistItem>){
+        with(view as RecyclerView){
+            layoutManager = LinearLayoutManager(activity)
+            adapter = MyPlaylistRecyclerViewAdapter(playList)
         }
     }
 

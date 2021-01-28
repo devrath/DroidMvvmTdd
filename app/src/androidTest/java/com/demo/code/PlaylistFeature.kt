@@ -40,4 +40,10 @@ class PlaylistFeature {
             .check(matches(isDisplayed()))
     }
 
+    /*@Test
+    fun displaysLoaderWhileFetchingThePlaylist(){
+        // Check if the toolbar name has the text Playlists
+        assertDisplayed(R.id.simpleProgressBar)
+    }*/
+
 }

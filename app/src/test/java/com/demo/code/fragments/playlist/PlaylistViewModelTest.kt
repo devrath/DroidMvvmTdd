@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.demo.code.models.PlaylistItem
 import com.demo.code.utils.BaseUnitTest
 import com.demo.code.utils.MainCoroutineScopeRule
+import com.demo.code.utils.captureValues
 import com.demo.code.utils.getValueForTest
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -52,14 +53,38 @@ class PlaylistViewModelTest : BaseUnitTest() {
     fun getPlaylistFromRepository() = runBlockingTest {
         val viewModel = mockSuccessfulCase()
 
-        // Extension function for the live data
+        // Get the live data
         viewModel.playList.getValueForTest()
 
         // Call the method of the repository one time
         verify(playlistRepository, times(1)).getPlaylists()
     }
 
+    @Test
+    fun showLoaderWhileLoading() = runBlockingTest {
+        val viewModel = mockSuccessfulCase()
 
+        // First capture all the emissions of loader live data
+        viewModel.progressBarVisibility.captureValues {
+            // Get the live data
+            viewModel.playList.getValueForTest()
+            // Check the assertion
+            assertEquals(true,values[0])
+        }
+    }
+
+    @Test
+    fun hideSpinnerAfterLoading() = runBlockingTest {
+        val viewModel = mockSuccessfulCase()
+
+        // First capture all the emissions of loader live data
+        viewModel.progressBarVisibility.captureValues {
+            // Get the live data
+            viewModel.playList.getValueForTest()
+            // Check the assertion
+            assertEquals(false,values.last())
+        }
+    }
 
 
 
