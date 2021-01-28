@@ -13,33 +13,20 @@ import androidx.lifecycle.observe
 import com.demo.code.adapters.MyPlaylistRecyclerViewAdapter
 import com.demo.code.R
 import com.demo.code.models.PlaylistItem
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_playlist.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-/**
- * A fragment representing a list of Items.
- */
+@AndroidEntryPoint
 class PlayListFragment : Fragment() {
-
-    private var columnCount = 1
 
     lateinit var playlistViewModel : PlaylistViewModel
 
-
-
-
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.1.3:2999/") // Sometimes it fails and we need to change this
-        .client(OkHttpClient())
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    private val api = retrofit.create(PlaylistAPI::class.java)
-    private var servicePlaylist = PlayListService(api)
-    private var repository = PlaylistRepository(service = servicePlaylist)
-    private var playlistViewModelFactory = PlaylistViewModelFactory(repository)
+    @Inject
+    lateinit var playlistViewModelFactory : PlaylistViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -5,8 +5,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import java.lang.RuntimeException
+import javax.inject.Inject
 
-class PlayListService(
+class PlayListService @Inject constructor(
         private val api : PlaylistAPI
 ) {
 
