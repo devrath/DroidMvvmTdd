@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.demo.code.adapters.MyPlaylistRecyclerViewAdapter
+import com.demo.code.base.BaseFragment
 import com.demo.code.databinding.FragmentPlaylistBinding
 import com.demo.code.models.PlaylistItem
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_playlist.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PlayListFragment : Fragment() {
+class PlayListFragment : BaseFragment() {
 
     lateinit var playlistViewModel : PlaylistViewModel
 
