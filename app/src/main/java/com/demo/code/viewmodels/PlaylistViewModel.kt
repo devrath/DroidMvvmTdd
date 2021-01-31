@@ -1,9 +1,8 @@
-package com.demo.code.fragments.playlist
+package com.demo.code.viewmodels
 
 import androidx.lifecycle.*
+import com.demo.code.repositories.PlaylistRepository
 import com.demo.code.models.PlaylistItem
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 class PlaylistViewModel(
         private val repository : PlaylistRepository

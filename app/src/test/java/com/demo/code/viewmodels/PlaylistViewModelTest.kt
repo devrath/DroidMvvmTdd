@@ -1,23 +1,18 @@
-package com.demo.code.fragments.playlist
+package com.demo.code.viewmodels
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.demo.code.models.PlaylistItem
+import com.demo.code.repositories.PlaylistRepository
 import com.demo.code.utils.BaseUnitTest
-import com.demo.code.utils.MainCoroutineScopeRule
 import com.demo.code.utils.captureValues
 import com.demo.code.utils.getValueForTest
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
-import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.notification.Failure
 import org.mockito.Mockito.times
 import java.lang.RuntimeException
 

@@ -1,6 +1,7 @@
-package com.demo.code.fragments.playlist
+package com.demo.code.network.networkservices
 
 import com.demo.code.models.PlaylistItem
+import com.demo.code.network.api.PlaylistAPI
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

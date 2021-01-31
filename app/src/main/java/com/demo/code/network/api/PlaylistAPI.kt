@@ -1,4 +1,4 @@
-package com.demo.code.fragments.playlist
+package com.demo.code.network.api
 
 import com.demo.code.models.PlaylistItem
 import retrofit2.http.GET

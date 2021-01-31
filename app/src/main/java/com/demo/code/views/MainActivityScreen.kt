@@ -1,8 +1,7 @@
-package com.demo.code.activities
+package com.demo.code.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.demo.code.fragments.playlist.PlayListFragment
+import com.demo.code.views.PlayListFragment
 import com.demo.code.R
 import com.demo.code.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,11 +1,13 @@
-package com.demo.code
+package com.demo.code.features
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import com.demo.code.activities.MainActivityScreen
+import com.demo.code.R
+import com.demo.code.base.BaseUiTest
+import com.demo.code.views.MainActivityScreen
 import com.demo.code.utils.ViewUtilities.nthChildOf
 import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed

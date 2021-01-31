@@ -1,4 +1,4 @@
-package com.demo.code
+package com.demo.code.base
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.runner.RunWith

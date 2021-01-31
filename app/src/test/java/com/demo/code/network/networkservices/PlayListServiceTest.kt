@@ -1,16 +1,16 @@
-package com.demo.code.fragments.playlist
+package com.demo.code.network.networkservices
 
 import com.demo.code.models.PlaylistItem
+import com.demo.code.network.api.PlaylistAPI
+import com.demo.code.network.networkservices.PlayListService
 import com.demo.code.utils.BaseUnitTest
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
-import org.mockito.Mockito.mock
 import org.mockito.Mockito.times
 import java.lang.RuntimeException
 

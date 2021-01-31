@@ -1,6 +1,6 @@
 package com.demo.code.di
 
-import com.demo.code.fragments.playlist.PlaylistAPI
+import com.demo.code.network.api.PlaylistAPI
 import com.demo.code.utils.Constants.APP_URL
 import dagger.Module
 import dagger.Provides
