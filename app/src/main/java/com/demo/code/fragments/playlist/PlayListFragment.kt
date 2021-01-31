@@ -22,9 +22,7 @@ import javax.inject.Inject
 class PlayListFragment : BaseFragment() {
 
     lateinit var playlistViewModel : PlaylistViewModel
-
     private var _binding: FragmentPlaylistBinding? = null
-
     private val binding get() = _binding!!
 
     @Inject
