@@ -66,9 +66,9 @@ class PlaylistViewModelTest : BaseUnitTest() {
 
         // First capture all the emissions of loader live data
         viewModel.progressBarVisibility.captureValues {
-            // Get the live data
+            // We force the playlist live data to emit the result
             viewModel.playList.getValueForTest()
-            // Check the assertion
+            // Check the assertion: First value emitted by loader live data is true
             assertEquals(true,values[0])
         }
     }
@@ -79,9 +79,9 @@ class PlaylistViewModelTest : BaseUnitTest() {
 
         // First capture all the emissions of loader live data
         viewModel.progressBarVisibility.captureValues {
-            // Get the live data
+            // We force the playlist live data to emit the result
             viewModel.playList.getValueForTest()
-            // Check the assertion
+            // Check the assertion: Last value emitted by loader live data is false
             assertEquals(false,values.last())
         }
     }

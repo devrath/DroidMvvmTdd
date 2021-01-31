@@ -12,6 +12,7 @@ class PlaylistViewModel(
     val progressBarVisibility = MutableLiveData<Boolean>()
 
     val playList = liveData<Result<List<PlaylistItem>>>{
+        // Live data for the loader is emitted
         progressBarVisibility.postValue(true)
         emitSource(repository.getPlaylists().asLiveData())
         progressBarVisibility.postValue(false)

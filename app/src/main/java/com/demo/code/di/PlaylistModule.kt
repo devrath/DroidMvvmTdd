@@ -1,6 +1,7 @@
 package com.demo.code.di
 
 import com.demo.code.fragments.playlist.PlaylistAPI
+import com.demo.code.utils.Constants.APP_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +22,7 @@ class PlaylistModule {
     @Provides
     fun retrofit() : Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.1.3:2999/") // Sometimes it fails and we need to change this
+            .baseUrl(APP_URL) // Sometimes it fails and we need to change this
             .client(OkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

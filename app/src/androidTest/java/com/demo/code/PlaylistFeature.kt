@@ -17,13 +17,17 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class PlaylistFeature {
 
+    val CAFE_NAME = "Hard Rock Cafe"
+    val CAFE_CATEGORY = "rock"
+    val TOOLBAR_NAME = "Playlists"
+
     val mActivityRule = ActivityTestRule(MainActivityScreen::class.java)
     @Rule get
 
     @Test
     fun displayTitleTest(){
         // Check if the toolbar name has the text Playlists
-        assertDisplayed("Playlists")
+        assertDisplayed(TOOLBAR_NAME)
     }
 
     @Test
@@ -32,18 +36,18 @@ class PlaylistFeature {
         assertRecyclerViewItemCount(R.id.playlist_list,10)
         //Check the name of the row in the list
         onView(allOf(withId(R.id.playlist_name),isDescendantOfA(nthChildOf(withId(R.id.playlist_list),0))))
-            .check(matches(withText("Hard Rock Cafe")))
+            .check(matches(withText(CAFE_NAME)))
             .check(matches(isDisplayed()))
         //Check the category of the row in the list
         onView(allOf(withId(R.id.playlist_category),isDescendantOfA(nthChildOf(withId(R.id.playlist_list),0))))
-            .check(matches(withText("rock")))
+            .check(matches(withText(CAFE_CATEGORY)))
             .check(matches(isDisplayed()))
     }
 
-    /*@Test
-    fun displaysLoaderWhileFetchingThePlaylist(){
-        // Check if the toolbar name has the text Playlists
-        assertDisplayed(R.id.simpleProgressBar)
-    }*/
+    @Test
+    fun displaysListOfPlaylists(){
+        // Check if the list of playlists are displayed
+        assertDisplayed(R.id.playlist_list)
+    }
 
 }
