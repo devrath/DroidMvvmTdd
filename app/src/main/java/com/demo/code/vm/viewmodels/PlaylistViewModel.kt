@@ -1,4 +1,4 @@
-package com.demo.code.viewmodels
+package com.demo.code.vm.viewmodels
 
 import androidx.lifecycle.*
 import com.demo.code.repositories.PlaylistRepository

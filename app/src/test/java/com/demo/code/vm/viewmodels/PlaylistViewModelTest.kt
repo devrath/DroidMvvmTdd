@@ -1,4 +1,4 @@
-package com.demo.code.viewmodels
+package com.demo.code.vm.viewmodels
 
 import com.demo.code.models.PlaylistItem
 import com.demo.code.repositories.PlaylistRepository

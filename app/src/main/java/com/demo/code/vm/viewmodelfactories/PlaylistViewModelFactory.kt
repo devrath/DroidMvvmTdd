@@ -1,9 +1,9 @@
-package com.demo.code.viewmodelfactories
+package com.demo.code.vm.viewmodelfactories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.demo.code.repositories.PlaylistRepository
-import com.demo.code.viewmodels.PlaylistViewModel
+import com.demo.code.vm.viewmodels.PlaylistViewModel
 import javax.inject.Inject
 
 class PlaylistViewModelFactory @Inject constructor(
