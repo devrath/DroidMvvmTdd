@@ -9,6 +9,7 @@ import com.demo.code.activities.MainActivityScreen
 import com.demo.code.utils.ViewUtilities.nthChildOf
 import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
+import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
 import org.hamcrest.Matchers.allOf
 import org.junit.Rule
 import org.junit.Test
@@ -49,5 +50,15 @@ class PlaylistFeature {
         // Check if the list of playlists are displayed
         assertDisplayed(R.id.playlist_list)
     }
+
+
+    @Test
+    fun checkIfTheLoaderHidesAfterDisplayingTheList(){
+        // Wait for the loader to close
+        Thread.sleep(4000)
+        // Check if the loader is hidden
+        assertNotDisplayed(R.id.simpleProgressBar)
+    }
+
 
 }
