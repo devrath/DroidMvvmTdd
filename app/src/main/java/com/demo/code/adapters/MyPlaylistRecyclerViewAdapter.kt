@@ -8,9 +8,9 @@ import com.demo.code.R
 import com.demo.code.models.PlaylistItem
 import kotlinx.android.synthetic.main.playlist_item.view.*
 
-class MyPlaylistRecyclerViewAdapter(
-    private val values: List<PlaylistItem>
-) : RecyclerView.Adapter<ViewHolder>() {
+class MyPlaylistRecyclerViewAdapter() : RecyclerView.Adapter<ViewHolder>() {
+
+    private var values = ArrayList<PlaylistItem>()
 
     override fun getItemCount(): Int {
         return values.size
@@ -23,7 +23,17 @@ class MyPlaylistRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.playlist_name?.text = values[position].name
         holder.playlist_category?.text = values[position].category
+
+
     }
+
+    public fun updateList(listItems: List<PlaylistItem>) {
+        values.clear()
+        values.addAll(listItems)
+        notifyDataSetChanged()
+    }
+
+
 }
 
 class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {

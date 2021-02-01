@@ -22,8 +22,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class PlayListFragment : BaseFragment() {
 
-    lateinit var playlistViewModel : PlaylistViewModel
+    private lateinit var playlistViewModel : PlaylistViewModel
     private var _binding: FragmentPlaylistBinding? = null
+    private val listAdapter = MyPlaylistRecyclerViewAdapter()
     private val binding get() = _binding!!
 
     @Inject
@@ -40,6 +41,7 @@ class PlayListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupListView(binding.playlistList)
         observers()
     }
 
@@ -48,16 +50,17 @@ class PlayListFragment : BaseFragment() {
         _binding = null
     }
 
+    /** Initialize the view model **/
     private fun initViewModel() {
         playlistViewModel = ViewModelProvider(this,playlistViewModelFactory).get(PlaylistViewModel::class.java)
     }
 
+    /** Set the observers for the current screen **/
     private fun observers() {
-        //playlistViewModel.setUpListData()
         playlistViewModel.playList.observe(this as LifecycleOwner) { playList ->
             // Update the UI
             playList.getOrNull()?.let {
-                setupList(binding.playlistList,it)
+                listAdapter.updateList(it)
             }
         }
 
@@ -70,22 +73,19 @@ class PlayListFragment : BaseFragment() {
         }
     }
 
-    private fun setupList(view: View?, playList: List<PlaylistItem>){
+    /** Set up the recycler view **/
+    private fun setupListView(view: View?){
         with(view as RecyclerView){
             layoutManager = LinearLayoutManager(activity)
-            adapter = MyPlaylistRecyclerViewAdapter(playList)
+            view.adapter = listAdapter
+            view.setHasFixedSize(true);
         }
     }
 
+    /** Inflate the screen **/
     private fun inflateScreen(inflater: LayoutInflater, container: ViewGroup?): View {
         _binding = FragmentPlaylistBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    private fun setAdapter(playList : List<PlaylistItem>) {
-        // Creates a vertical Layout Manager
-        playlist_list.layoutManager = LinearLayoutManager(activity)
-        playlist_list.adapter = MyPlaylistRecyclerViewAdapter(playList)
     }
 
     private fun hideProgress() {
