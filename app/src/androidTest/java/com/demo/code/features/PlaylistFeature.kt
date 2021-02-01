@@ -1,18 +1,25 @@
 package com.demo.code.features
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.demo.code.R
 import com.demo.code.base.BaseUiTest
+import com.demo.code.utils.FileReader
 import com.demo.code.views.MainActivityScreen
 import com.demo.code.utils.ViewUtilities.nthChildOf
+import com.jakewharton.espresso.OkHttp3IdlingResource
 import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
+import okhttp3.mockwebserver.Dispatcher
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.RecordedRequest
 import org.hamcrest.Matchers.allOf
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,6 +33,18 @@ class PlaylistFeature : BaseUiTest() {
 
     val mActivityRule = ActivityTestRule(MainActivityScreen::class.java)
     @Rule get
+
+    @Before
+    fun setupFeature() {
+        mockWebServer.dispatcher = object : Dispatcher() {
+            override fun dispatch(request: RecordedRequest): MockResponse {
+                return MockResponse()
+                    .setResponseCode(200)
+                    .setBody(FileReader.readStringFromFile("success_response.json"))
+            }
+        }
+        mActivityRule.launchActivity(null)
+    }
 
     @Test
     fun displayTitleTest(){

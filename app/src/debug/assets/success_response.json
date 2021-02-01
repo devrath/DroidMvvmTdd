@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "name": "Dil se re",
+    "category": "hindi"
+  },
+  {
+    "id": "2",
+    "name": "Jazzed music beats",
+    "category": "Jazz Type"
+  },
+  {
+    "id": "3",
+    "name": "Top kannada Hits",
+    "category": "Remix"
+  },
+  {
+    "id": "4",
+    "name": "80's Hindi Songs",
+    "category": "hindi"
+  },
+  {
+    "id": "5",
+    "name": "Everybody Rock on",
+    "category": "english"
+  },
+  {
+    "id": "6",
+    "name": "90's flashback",
+    "category": "pop"
+  },
+  {
+    "id": "7",
+    "name": "Machine singing",
+    "category": "electro"
+  },
+  {
+    "id": "8",
+    "name": "Let's Party",
+    "category": "mixed"
+  },
+  {
+    "id": "9",
+    "name": "Feel The Music",
+    "category": "electro english"
+  },
+  {
+    "id": "10",
+    "name": "Best Songs 2020",
+    "category": "kannada"
+  }
+]
