@@ -3,9 +3,8 @@ package com.demo.code.repositories
 import com.demo.code.network.networkservices.PlayListService
 import com.demo.code.models.PlaylistItem
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class PlaylistRepository @Inject constructor(
+class PlaylistRepository (
         private val service: PlayListService
 ) {
 
