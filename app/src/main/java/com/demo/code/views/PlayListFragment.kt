@@ -13,22 +13,16 @@ import com.demo.code.adapters.MyPlaylistRecyclerViewAdapter
 import com.demo.code.base.BaseFragment
 import com.demo.code.databinding.FragmentPlaylistBinding
 import com.demo.code.vm.viewmodels.PlaylistViewModel
-import com.demo.code.vm.viewmodelfactories.PlaylistViewModelFactory
-import com.demo.code.models.PlaylistItem
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_playlist.*
-import javax.inject.Inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class PlayListFragment : BaseFragment() {
 
-    private lateinit var playlistViewModel : PlaylistViewModel
+    //private lateinit var playlistViewModel : PlaylistViewModel
     private var _binding: FragmentPlaylistBinding? = null
     private val listAdapter = MyPlaylistRecyclerViewAdapter()
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var playlistViewModelFactory : PlaylistViewModelFactory
+    private val playlistViewModel by viewModel<PlaylistViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +46,7 @@ class PlayListFragment : BaseFragment() {
 
     /** Initialize the view model **/
     private fun initViewModel() {
-        playlistViewModel = ViewModelProvider(this,playlistViewModelFactory).get(PlaylistViewModel::class.java)
+        //playlistViewModel = ViewModelProvider(this,playlistViewModelFactory).get(PlaylistViewModel::class.java)
     }
 
     /** Set the observers for the current screen **/
