@@ -5,6 +5,15 @@
 # DroidMvvmTdd
 Android app development (Kotlin) with Clean Architecture, Test driven development, HILT, Espresso &amp; Unit Testing
 
+![Hilt](https://img.shields.io/badge/Hilt-Dependency%20Injection-orange)
+![Koin](https://img.shields.io/badge/Koin-Dependency%20Injection-orange)
+![Unit Testing](https://img.shields.io/badge/Unit%20Testing-Testing-blue)
+![Architecture](https://img.shields.io/badge/MVVM-Architecture-red)
+![KotlinFlow](https://img.shields.io/badge/KotlinFlow-API-yellowgreen)
+![Coroutines](https://img.shields.io/badge/Coroutines-API-green)
+![LiveData](https://img.shields.io/badge/LiveData-API-brightgreen)
+
+
 #### Setting up the Mockoon backend
 1. Find out the localhost from your pc ( Ex: IPv4 Address. . . . . . . . . . . : 192.178.1.1 )
 2. [Install Mockoon from their official site](https://mockoon.com/ "Install Mockoon from their official site")
